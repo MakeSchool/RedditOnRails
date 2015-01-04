@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   VALID_EMAIL_OR_BLANK_REGEX = /\A([\w+\-.]+@[a-z\d\-.]+\.[a-z]+)?\z/i
   validates :email, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_OR_BLANK_REGEX }
+  validates_length_of :password, minimum: 6, maximum: 32
 
   has_secure_password
 

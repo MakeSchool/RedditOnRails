@@ -1,6 +1,5 @@
-<h1>Editing User</h1>
+<% provide(:title, 'Edit account') %>
 
-<%= render 'form' %>
+<h1>Update your account</h1>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<%= render 'form', submit_button_text: 'Update my account' %>

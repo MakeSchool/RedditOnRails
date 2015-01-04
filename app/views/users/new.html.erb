@@ -1,5 +1,5 @@
-<h1>New User</h1>
+<% provide(:title, 'Sign up') %>
 
-<%= render 'form' %>
+<h1>Create a new account</h1>
 
-<%= link_to 'Back', users_path %>
+<%= render 'form', submit_button_text: "Create my account" %>

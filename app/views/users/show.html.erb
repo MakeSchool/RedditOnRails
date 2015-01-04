@@ -1,19 +1,16 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<% provide(:title, @user.username) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section id="user_info">
+      <h1><%= @user.username %></h1>
+      <h2><span class="karma">0</span> link karma</h2>
+      <h2><span class="karma">0</span> comment karma</h2>
+    </section>
+  </aside>
+  <aside class="col-md-8">
+    <section id="user_overview">
+      <h1>Posts</h1>
+      <h1>Comments</h1>
+    </section>
+  </aside>
+</div>
