@@ -7,7 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.create!(username: "admin",
-             email: "",
              password: "imsecure",
              password_confirmation: "imsecure",
              admin: true)
@@ -17,10 +16,8 @@ User.create!(username: "admin",
   while !!User.find_by(username: username) # hack to skip taken usernames
     username = Faker::Internet.user_name
   end
-  email = ""
   password = "password"
   User.create!(username:  username,
-               email:     email,
                password:  password,
                password_confirmation: password)
 end

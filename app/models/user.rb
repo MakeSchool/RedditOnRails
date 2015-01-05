@@ -1,13 +1,9 @@
 class User < ActiveRecord::Base
   attr_accessor :remember_token
 
-  before_save { self.email = email ? email.downcase : "" # fixes nil when no email
-                self.username = username.downcase }
+  before_save { self.username = username.downcase }
   validates :username, presence: true, length: { maximum: 20 },
                     uniqueness: { case_sensitive: false }
-  VALID_EMAIL_OR_BLANK_REGEX = /\A([\w+\-.]+@[a-z\d\-.]+\.[a-z]+)?\z/i
-  validates :email, length: { maximum: 255 },
-                    format: { with: VALID_EMAIL_OR_BLANK_REGEX }
   validates_length_of :password, minimum: 6, maximum: 32
 
   has_secure_password
