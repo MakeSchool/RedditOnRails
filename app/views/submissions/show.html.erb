@@ -5,7 +5,11 @@
   </aside>
   <aside class="col-md-12">
     <section id="post_comments">
-      <h2>all 0 comments</h2>
+      <section class="add_comment">
+        <%= render "shared/comment_form", comment: @comment, commentable: @submission %>
+      </section>
+      <h2>all <%= @submission.comments.count %> comments</h2>
+      <%= render @submission.comments %>
     </section>
   </aside>
 </div>

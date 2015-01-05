@@ -1,5 +1,5 @@
 class Link < ActiveRecord::Base
-  has_one :submission, :as => :postable
+  has_one :submission, as: :postable
   validates_presence_of :url
   validate :url_is_valid_url, on: :create
 

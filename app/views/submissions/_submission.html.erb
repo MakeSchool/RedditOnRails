@@ -1,11 +1,11 @@
 <section class="post_info">
   <h1><%= link_to submission.title, submission.postable.url %></h1>
   <h3>
-    submitted 0 hours ago by
+    submitted <%= time_ago_in_words(submission.created_at) %> ago by
     <%= link_to submission.user.username, user_path(submission.user) %>
   </h3>
   <h3>
-    <%= link_to "0 comments", submission_path(submission) %>
+    <%= link_to "#{submission.comments.count} comments", submission_path(submission) %>
     <% if current_user.admin? || current_user?(submission.user) %>
       | <%= link_to "delete", submission, method: :delete,
                                             data: { confirm: "You sure?" } %>

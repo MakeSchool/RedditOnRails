@@ -25,6 +25,7 @@ class SubmissionsController < ApplicationController
 
   def show
     @submission = Submission.find(params[:id])
+    @comment = current_user.comments.build if logged_in?
   end
 
   def destroy

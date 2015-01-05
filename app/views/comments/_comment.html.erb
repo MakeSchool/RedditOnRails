@@ -1,0 +1,19 @@
+<section class="comment_info">
+  <h3>
+    <%= link_to comment.user.username, user_path(comment.user) %>
+    <%= time_ago_in_words(comment.created_at) %> ago
+    <% if comment.created_at != comment.updated_at %>
+      | edited <%= time_ago_in_words(comment.updated_at) %> ago
+    <% end %>
+    <% if current_user.admin? || current_user?(submission.user) %>
+      | <%= link_to "edit", edit_comment_path(comment) %>
+      | <%= link_to "delete", comment, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+    <% end %>
+  </h3>
+  <section class="comment">
+    <%= comment.content %>
+  </section>
+  <!-- TODO: Nested comments -->
+  <!-- <%= link_to "reply", "" %> -->
+</section>

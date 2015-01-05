@@ -1,0 +1,13 @@
+<div class="comment-form">
+  <%= form_for(comment) do |f| %>
+  <%= render "shared/errors", object: f.object %>
+
+  <%= f.label :content, class: "control-label" %>
+  <%= f.text_area :content, class: "form-control" %>
+  <%= hidden_field_tag :commentable_id, commentable.id %>
+  <%= hidden_field_tag :commentable_type, commentable.class %>
+
+  <%= f.submit "Post", class: "btn btn-primary" %>
+
+  <% end %>
+</div>

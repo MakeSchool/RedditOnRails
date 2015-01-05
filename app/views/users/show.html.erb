@@ -10,7 +10,10 @@
   <aside class="col-md-8">
     <section id="user_overview">
       <h1>Posts</h1>
+      <%= render @user.submissions %>
+      <br>
       <h1>Comments</h1>
+      <%= render @user.comments %>
     </section>
   </aside>
 </div>

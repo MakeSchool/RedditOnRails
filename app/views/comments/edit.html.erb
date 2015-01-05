@@ -1,0 +1,5 @@
+<% provide(:title, 'Edit comment') %>
+
+<h1>Edit your comment</h1>
+<%= render 'shared/comment_form', comment: @comment,
+                                  commentable: @comment.commentable %>
