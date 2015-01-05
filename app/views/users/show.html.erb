@@ -1,16 +1,17 @@
 <% provide(:title, @user.username) %>
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="col-md-3">
     <section id="user_info">
       <h1><%= @user.username %></h1>
-      <h2><span class="karma">0</span> link karma</h2>
-      <h2><span class="karma">0</span> comment karma</h2>
+      <h2><span class="karma"><%= @user.total_karma %></span> link karma</h2>
     </section>
   </aside>
-  <aside class="col-md-8">
+  <aside class="col-md-9">
     <section id="user_overview">
       <h1>Posts</h1>
-      <%= render @user.submissions %>
+      <section class="submissions">
+        <%= render @user.submissions %>
+      </section>
       <br>
       <h1>Comments</h1>
       <%= render @user.comments %>

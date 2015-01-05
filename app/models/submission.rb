@@ -10,12 +10,12 @@ class Submission < ActiveRecord::Base
 
   accepts_nested_attributes_for :postable
 
-  def score
+  def total_upvotes
     votes.where(upvote: true).count - votes.where(upvote: false).count
   end
 
   def update_score(gravity)
-    votes = self.score
+    votes = self.total_upvotes
     age = Time.diff(Time.now, self.created_at)[:hour]
     score = votes / (age + 2) ** gravity * 1000
     self.update_attribute(:score, score)

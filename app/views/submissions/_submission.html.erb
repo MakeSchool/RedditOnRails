@@ -8,7 +8,7 @@
     <%= link_to submission.user.username, user_path(submission.user) %>
   </h3>
   <h3>
-    <%= "#{submission.score} upvotes" %>
+    <%= "#{submission.total_upvotes} upvotes" %>
     | <%= link_to "#{submission.comments.count} comments", submission_path(submission) %>
     <% if current_user.admin? || current_user?(submission.user) %>
       | <%= link_to "delete", submission, method: :delete,

@@ -72,6 +72,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def total_karma
+    karma = 0
+    self.submissions.each do |submission|
+      karma += submission.total_upvotes
+    end
+    karma
+  end
+
   private
     def downcase_username
       self.username = username.downcase

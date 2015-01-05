@@ -207,12 +207,10 @@ input {
 
 section.submissions {
   @include section_sizing;
-
-  ul {
-    padding-left: 0px;
-  }
+  padding-left: 0px;
 
   section.post_info {
+    margin-top: 0px !important;
     margin-bottom: 10px;
     padding: 10px 5px 5px 10px;
     border: 1px solid gray;
@@ -222,6 +220,7 @@ section.submissions {
   section.votes {
     float: left;
     padding: 5px 5px 0px 2px;
+    margin-top: 0px !important;
 
     a:link, a:visited {
       color: $none-color;
