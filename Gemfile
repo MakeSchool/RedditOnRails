@@ -16,6 +16,7 @@ gem 'will_paginate',           '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem 'rsense'
 gem 'json',                 '1.8.1'
+gem 'time_diff'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150105060419) do
+ActiveRecord::Schema.define(version: 20150105170256) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -37,8 +37,9 @@ ActiveRecord::Schema.define(version: 20150105060419) do
     t.integer  "postable_id"
     t.string   "postable_type"
     t.integer  "user_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "score",         default: 0
   end
 
   add_index "submissions", ["postable_type", "postable_id"], name: "index_submissions_on_postable_type_and_postable_id"
