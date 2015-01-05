@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  get 'comments/new'
-
-  get 'comments/show'
-
-  get 'comments/edit'
 
   root    'static_pages#home'
   get     'about'   =>  'static_pages#about'
@@ -15,6 +10,7 @@ Rails.application.routes.draw do
   resources :users
   resources :submissions,     only: [:new, :create, :destroy, :show, :index]
   resources :comments,        only: [:create, :edit, :destroy, :update]
+  resources :votes,           only: [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

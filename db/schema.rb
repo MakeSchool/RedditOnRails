@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150105041050) do
+ActiveRecord::Schema.define(version: 20150105060419) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -55,5 +55,17 @@ ActiveRecord::Schema.define(version: 20150105041050) do
   end
 
   add_index "users", ["username"], name: "index_users_on_username", unique: true
+
+  create_table "votes", force: :cascade do |t|
+    t.boolean  "upvote"
+    t.integer  "user_id"
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id"
+  add_index "votes", ["votable_type", "votable_id"], name: "index_votes_on_votable_type_and_votable_id"
 
 end

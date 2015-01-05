@@ -1,11 +1,13 @@
 <section class="post_info">
+  <%= render "shared/votes", votable: submission %>
   <h1><%= link_to submission.title, submission.postable.url %></h1>
   <h3>
     submitted <%= time_ago_in_words(submission.created_at) %> ago by
     <%= link_to submission.user.username, user_path(submission.user) %>
   </h3>
   <h3>
-    <%= link_to "#{submission.comments.count} comments", submission_path(submission) %>
+    <%= "#{submission.score} upvotes" %>
+    | <%= link_to "#{submission.comments.count} comments", submission_path(submission) %>
     <% if current_user.admin? || current_user?(submission.user) %>
       | <%= link_to "delete", submission, method: :delete,
                                             data: { confirm: "You sure?" } %>

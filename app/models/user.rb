@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
   has_many :submissions
   has_many :comments
+  has_many :votes
   attr_accessor :remember_token
 
-  before_save { self.username = username.downcase }
+  before_save :downcase_username
   validates :username, presence: true, length: { minimum: 2, maximum: 32 },
                     uniqueness: { case_sensitive: false }
   validates_length_of :password, minimum: 6, maximum: 32
@@ -38,4 +39,22 @@ class User < ActiveRecord::Base
   def forget
     update_attribute(:remember_digest, nil)
   end
+
+  def vote(votable, upvote)
+    unvote(votable)
+    votes.create(votable: votable, upvote: upvote)
+  end
+
+  def unvote(votable)
+    votes.find_by(votable: votable).try(:destroy)
+  end
+
+  def voted?(votable)
+    votes.include?(votable)
+  end
+
+  private
+    def downcase_username
+      self.username = username.downcase
+    end
 end

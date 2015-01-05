@@ -215,6 +215,11 @@ section.submissions {
     border: 1px solid gray;
     border-radius: 5px;
   }
+
+  section.votes {
+    float: left;
+    padding: 5px 5px 0px 2px
+  }
 }
 
 /* comment */
