@@ -6,12 +6,21 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-user_list = [
-  [ "admin", "imsecure" ],
-  [ "user1", "password" ]
-]
+User.create!(username: "admin",
+             email: "",
+             password: "imsecure",
+             password_confirmation: "imsecure",
+             admin: true)
 
-user_list.each do | username, password |
-  User.create( username: username, password: password,
+99.times do |n|
+  username = Faker::Internet.user_name
+  while !!User.find_by(username: username) # hack to skip taken usernames
+    username = Faker::Internet.user_name
+  end
+  email = ""
+  password = "password"
+  User.create!(username:  username,
+               email:     email,
+               password:  password,
                password_confirmation: password)
 end
