@@ -41,8 +41,16 @@ class User < ActiveRecord::Base
   end
 
   def vote(votable, upvote)
-    unvote(votable)
-    votes.create(votable: votable, upvote: upvote)
+    @vote = votes.where(votable: votable).first
+    if !@vote
+      votes.create(votable: votable, upvote: upvote)
+    else
+      newVote = (@vote.upvote.to_s != upvote)
+      unvote(votable)
+      if newVote
+        votes.create(votable: votable, upvote: upvote)
+      end
+    end
   end
 
   def unvote(votable)
@@ -50,7 +58,18 @@ class User < ActiveRecord::Base
   end
 
   def voted?(votable)
-    votes.include?(votable)
+    votes.include?(votable: votable)
+  end
+
+  def upOrDownVoted(votable)
+    @vote = votes.where(votable: votable).first
+    if !@vote
+      0
+    elsif @vote.upvote
+      1
+    else
+      -1
+    end
   end
 
   private

@@ -1,11 +1,12 @@
-<section class="votes">
+  <% voteClasses = voteButtonClasses(votable) %>
   <%= link_to "&#9650;".html_safe, votes_path( { upvote: true,
                                        votable_id: votable.id }),
                                        method: :post,
-                                       remote: true %>
+                                       remote: true,
+                                       class: voteClasses[0] %>
   <br>
   <%= link_to "&#9660;".html_safe, votes_path( { upvote: false,
                                        votable_id: votable.id }),
                                        method: :post,
-                                       remote: true %>
-</section>
+                                       remote: true,
+                                       class: voteClasses[1] %>

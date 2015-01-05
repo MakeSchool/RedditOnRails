@@ -4,6 +4,9 @@
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
+$upvote-color: #FF4500;
+$downvote-color: #5F99CF;
+$none-color: #D3D3D3;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -218,7 +221,30 @@ section.submissions {
 
   section.votes {
     float: left;
-    padding: 5px 5px 0px 2px
+    padding: 5px 5px 0px 2px;
+
+    a:link, a:visited {
+      color: $none-color;
+      text-decoration: none;
+    }
+
+    a:link.upvoted, a:visited.downvoted {
+      color: $upvote-color;
+    }
+
+    a:link.downvoted, a:visited.downvoted {
+      color: $downvote-color;
+    }
+
+    a:hover {
+      color: $gray-medium-light;
+      text-decoration: none;
+    }
+
+    a:active {
+      color: $none-color;
+      text-decoration: none;
+    }
   }
 }
 

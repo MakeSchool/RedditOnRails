@@ -1,5 +1,7 @@
-<section class="post_info">
-  <%= render "shared/votes", votable: submission %>
+<section class="post_info" id="submission-<%= submission.id %>">
+  <section class="votes" id="vote-<%= submission.id %>">
+    <%= render "shared/votes", votable: submission %>
+  </section>
   <h1><%= link_to submission.title, submission.postable.url %></h1>
   <h3>
     submitted <%= time_ago_in_words(submission.created_at) %> ago by
