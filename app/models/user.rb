@@ -45,9 +45,9 @@ class User < ActiveRecord::Base
     if !@vote
       votes.create(votable: votable, upvote: upvote)
     else
-      newVote = (@vote.upvote.to_s != upvote)
+      new_vote = (@vote.upvote.to_s != upvote)
       unvote(votable)
-      if newVote
+      if new_vote
         votes.create(votable: votable, upvote: upvote)
       end
     end
