@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150105005804) do
+ActiveRecord::Schema.define(version: 20150105012411) do
+
+  create_table "links", force: :cascade do |t|
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "submissions", force: :cascade do |t|
+    t.text     "title"
+    t.integer  "postable_id"
+    t.string   "postable_type"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "submissions", ["postable_type", "postable_id"], name: "index_submissions_on_postable_type_and_postable_id"
+  add_index "submissions", ["user_id", "created_at"], name: "index_submissions_on_user_id_and_created_at"
+  add_index "submissions", ["user_id"], name: "index_submissions_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "username"

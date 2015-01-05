@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
+  has_many :submissions
   attr_accessor :remember_token
 
   before_save { self.username = username.downcase }
-  validates :username, presence: true, length: { maximum: 20 },
+  validates :username, presence: true, length: { maximum: 32 },
                     uniqueness: { case_sensitive: false }
   validates_length_of :password, minimum: 6, maximum: 32
 

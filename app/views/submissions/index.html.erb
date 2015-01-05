@@ -1,0 +1,10 @@
+<% provide(:title, 'All users') %>
+
+<%= will_paginate %>
+<section class="submissions">
+  <ul class="submission">
+    <%= render @submissions %>
+  </ul>
+</section>
+
+<%= will_paginate %>

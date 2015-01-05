@@ -21,3 +21,19 @@ User.create!(username: "admin",
                password:  password,
                password_confirmation: password)
 end
+
+link = Link.create(url: "http://makeschool.com")
+Submission.create(user: User.first, postable: link,
+                  title: "Awesome resource for learning CS")
+
+link = Link.create(url: "http://makeschool.com/gapyear")
+Submission.create(user: User.first, postable: link,
+                  title: "College alternative for hackers")
+
+link = Link.create(url: "http://makeschool.com/apply")
+Submission.create(user: User.first, postable: link,
+                  title: "Applications open now!")
+
+link = Link.create(url: "http://makeschool.com/summeracademy")
+Submission.create(user: User.first, postable: link,
+                  title: "Fun way to learn how to make iOS apps")
