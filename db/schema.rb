@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150105170256) do
+ActiveRecord::Schema.define(version: 20150106070843) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -40,11 +40,32 @@ ActiveRecord::Schema.define(version: 20150105170256) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "score",         default: 0
+    t.integer  "subreddit_id"
   end
 
   add_index "submissions", ["postable_type", "postable_id"], name: "index_submissions_on_postable_type_and_postable_id"
+  add_index "submissions", ["subreddit_id"], name: "index_submissions_on_subreddit_id"
   add_index "submissions", ["user_id", "created_at"], name: "index_submissions_on_user_id_and_created_at"
   add_index "submissions", ["user_id"], name: "index_submissions_on_user_id"
+
+  create_table "subreddits", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "moderator_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "subreddits", ["moderator_id"], name: "index_subreddits_on_moderator_id"
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "subreddit_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "subscriptions", ["subreddit_id"], name: "index_subscriptions_on_subreddit_id"
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "username"

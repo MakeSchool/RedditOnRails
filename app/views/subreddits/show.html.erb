@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @subreddit.name %>
+</p>
+
+<p>
+  <strong>Moderator:</strong>
+  <%= @subreddit.moderator.username %>
+</p>
+
+<%= link_to 'Back', subreddits_path %>

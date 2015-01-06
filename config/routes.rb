@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :submissions,     only: [:new, :create, :destroy, :show, :index]
   resources :comments,        only: [:create, :edit, :destroy, :update]
   resources :votes,           only: [:create, :destroy]
+  resources :subreddits,      only: [:index, :new, :create, :destroy, :show]
+  resources :subscriptions,   only: [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,6 +1,7 @@
 class Submission < ActiveRecord::Base
   belongs_to :postable, polymorphic: :true, dependent: :destroy
   belongs_to :user
+  belongs_to :subreddit
   has_many :comments, as: :commentable
   has_many :votes, as: :votable
   default_scope -> { order(score: :desc) }

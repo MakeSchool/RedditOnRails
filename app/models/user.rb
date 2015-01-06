@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   has_many :submissions
   has_many :comments
   has_many :votes
+  has_many :created_subreddits, class_name: "Subreddit", foreign_key: "moderator_id"
+  has_many :subscriptions
+  has_many :subreddits, through: :subscriptions
   attr_accessor :remember_token
 
   before_save :downcase_username
