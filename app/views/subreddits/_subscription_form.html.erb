@@ -1,0 +1,7 @@
+<div id="subscribe_form">
+  <% if current_user.subscribed_to?(@subreddit) %>
+    <%= render 'unsubscribe' %>
+  <% else %>
+    <%= render 'subscribe' %>
+  <% end %>
+</div>

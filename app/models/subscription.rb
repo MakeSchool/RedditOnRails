@@ -1,4 +1,4 @@
 class Subscription < ActiveRecord::Base
-  belongs_to :user, dependent: :destroy
-  belongs_to :subreddit, dependent: :destroy
+  belongs_to :user
+  belongs_to :subreddit
 end
