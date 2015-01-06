@@ -22,18 +22,34 @@ User.create!(username: "admin",
                password_confirmation: password)
 end
 
+sub1 = Subreddit.create(name: "LearnCS", moderator: User.first)
+sub2 = Subreddit.create(name: "random", moderator: User.second)
+Subscription.create(user: User.first, subreddit: sub1)
+Subscription.create(user: User.first, subreddit: sub2)
+Subscription.create(user: User.third, subreddit: sub1)
+Subscription.create(user: User.second, subreddit: sub2)
+
 link = Link.create(url: "http://makeschool.com")
 Submission.create(user: User.first, postable: link,
-                  title: "Awesome resource for learning CS")
+                  title: "Awesome resource for learning CS",
+                  subreddit: sub1)
 
 link = Link.create(url: "http://makeschool.com/gapyear")
 Submission.create(user: User.first, postable: link,
-                  title: "College alternative for hackers")
+                  title: "College alternative for hackers",
+                  subreddit: sub1)
 
 link = Link.create(url: "http://makeschool.com/apply")
 Submission.create(user: User.first, postable: link,
-                  title: "Applications open now!")
+                  title: "Applications open now!",
+                  subreddit: sub1)
 
 link = Link.create(url: "http://makeschool.com/summeracademy")
 Submission.create(user: User.first, postable: link,
-                  title: "Fun way to learn how to make iOS apps")
+                  title: "Fun way to learn how to make iOS apps",
+                  subreddit: sub1)
+
+link = Link.create(url: "http://google.com")
+                  Submission.create(user: User.second, postable: link,
+                  title: "Check out this great search engine",
+                  subreddit: sub2)

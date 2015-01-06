@@ -1,0 +1,2 @@
+$("#subscribe_form").html( "<%= escape_javascript(render('subreddits/unsubscribe')) %>" )
+$("#subscribers").html( "<%= @subreddit.subscriptions.count %>" )

@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   has_many :submissions
   has_many :comments
   has_many :votes
+  has_many :created_subreddits, class_name: "Subreddit", foreign_key: "moderator_id"
+  has_many :subscriptions, dependent: :destroy
+  has_many :subreddits, through: :subscriptions
   attr_accessor :remember_token
 
   before_save :downcase_username
@@ -57,11 +60,7 @@ class User < ActiveRecord::Base
     votes.find_by(votable: votable).try(:destroy)
   end
 
-  def voted?(votable)
-    votes.include?(votable: votable)
-  end
-
-  def upOrDownVoted(votable)
+  def up_or_down_voted(votable)
     @vote = votes.where(votable: votable).first
     if !@vote
       0
@@ -70,6 +69,25 @@ class User < ActiveRecord::Base
     else
       -1
     end
+  end
+
+  def subscribe(subreddit)
+    subscriptions.create(subreddit_id: subreddit.id)
+  end
+
+  def unsubscribe(subreddit)
+    subscriptions.find_by(subreddit_id: subreddit.id).destroy
+  end
+
+  def subscribed_to?(subreddit)
+    subreddits.include?(subreddit)
+  end
+
+  # Returns a user's status feed.
+  def feed
+    subscribed_ids = "SELECT subreddit_id FROM subscriptions
+    WHERE  user_id = :user_id"
+    Submission.where("user_id IN (#{subscribed_ids})", user_id: id)
   end
 
   def total_karma

@@ -1,0 +1,20 @@
+<% provide(:title, "r/#{@subreddit.name}") %>
+<div class="row">
+  <aside class="col-md-2">
+    <section id="subreddit_info">
+      <h1>r/<%= @subreddit.name %></h1>
+      <h3><span id="subscribers"><%= @subreddit.subscriptions.count %></span> subscribers</h3>
+      <br>
+      <%= render "subscription_form" %>
+    </section>
+  </aside>
+  <aside class="col-md-10">
+    <section id="subreddit_posts">
+      <h1>Submissions to r/<%= @subreddit.name %></h1>
+      <section class="submissions">
+        <%= render @submissions %>
+      </section>
+      <%= will_paginate @submissions %>
+    </section>
+  </aside>
+</div>

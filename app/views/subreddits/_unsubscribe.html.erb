@@ -1,0 +1,7 @@
+<%= link_to "New post", new_subreddit_submission_path(@subreddit), class: "btn btn-primary" %>
+<br><br>
+<%= form_for(current_user.subscriptions.find_by(subreddit_id: @subreddit.id),
+                                  html: { method: :delete },
+                                  remote: true )  do |f| %>
+  <%= f.submit "Unsubscribe", class: "btn btn-primary" %>
+<% end %>
