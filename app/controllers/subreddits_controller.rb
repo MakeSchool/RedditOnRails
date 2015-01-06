@@ -32,6 +32,7 @@ class SubredditsController < ApplicationController
         format.html { redirect_to @subreddit
                       flash[:sucess] = "r/#{@subreddit.name} created." }
         format.json { render :show, status: :created, location: @subreddit }
+        current_user.subscriptions.build(subreddit: @subreddit).save
       else
         format.html { render :new }
         format.json { render json: @subreddit.errors, status: :unprocessable_entity }

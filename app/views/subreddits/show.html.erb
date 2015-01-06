@@ -3,9 +3,9 @@
   <aside class="col-md-2">
     <section id="subreddit_info">
       <h1>r/<%= @subreddit.name %></h1>
-      <h3><%= @subreddit.submissions.count %> subscribers</h3>
+      <h3><%= @subreddit.subscriptions.count %> subscribers</h3>
       <br>
-      <%= link_to "New post", new_submission_path, class: "btn btn-primary" %>
+      <%= link_to "New post", new_subreddit_submission_path(@subreddit), class: "btn btn-primary" %>
     </section>
   </aside>
   <aside class="col-md-10">

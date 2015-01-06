@@ -22,7 +22,8 @@ User.create!(username: "admin",
                password_confirmation: password)
 end
 
-sub = Subreddit.create(name: "LearnCS", moderator: User.first)
+sub1 = Subreddit.create(name: "LearnCS", moderator: User.first)
+sub2 = Subreddit.create(name: "random", moderator: User.second)
 Subscription.create(user: User.first, subreddit: sub)
 
 link = Link.create(url: "http://makeschool.com")

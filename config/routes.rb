@@ -8,10 +8,12 @@ Rails.application.routes.draw do
   delete  'logout'  =>  'sessions#destroy'
 
   resources :users
-  resources :submissions,     only: [:new, :create, :destroy, :show, :index]
   resources :comments,        only: [:create, :edit, :destroy, :update]
   resources :votes,           only: [:create, :destroy]
-  resources :subreddits,      only: [:index, :new, :create, :destroy, :show]
+  resources :subreddits,      only: [:index, :new, :create, :destroy, :show] do
+    resources :submissions,   only: [:new, :create, :destroy]
+  end
+  resources :submissions,     only: [:show, :index]
   resources :subscriptions,   only: [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
