@@ -1,28 +1,8 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, 'All subreddits') %>
+<h1>All Subreddits</h1>
 
-<h1>Listing Subreddits</h1>
+<ul class="subreddits">
+  <%= render @subreddits %>
+</ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Moderator</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @subreddits.each do |subreddit| %>
-      <tr>
-        <td><%= subreddit.name %></td>
-        <td><%= subreddit.moderator.username %></td>
-        <td><%= link_to 'Show', subreddit %></td>
-        <td><%= link_to 'Destroy', subreddit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Subreddit', new_subreddit_path %>
+<%= will_paginate %>

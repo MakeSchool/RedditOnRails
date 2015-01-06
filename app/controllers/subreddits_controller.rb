@@ -4,12 +4,13 @@ class SubredditsController < ApplicationController
   # GET /subreddits
   # GET /subreddits.json
   def index
-    @subreddits = Subreddit.all
+    @subreddits = Subreddit.paginate(page: params[:page])
   end
 
   # GET /subreddits/1
   # GET /subreddits/1.json
   def show
+    @submissions = @subreddit.submissions.paginate(page: params[:page])
   end
 
   # GET /subreddits/new
@@ -24,28 +25,15 @@ class SubredditsController < ApplicationController
   # POST /subreddits
   # POST /subreddits.json
   def create
-    @subreddit = Subreddit.new(subreddit_params)
+    @subreddit = current_user.created_subreddits.build(subreddit_params)
 
     respond_to do |format|
       if @subreddit.save
-        format.html { redirect_to @subreddit, notice: 'Subreddit was successfully created.' }
+        format.html { redirect_to @subreddit
+                      flash[:sucess] = "r/#{@subreddit.name} created." }
         format.json { render :show, status: :created, location: @subreddit }
       else
         format.html { render :new }
-        format.json { render json: @subreddit.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /subreddits/1
-  # PATCH/PUT /subreddits/1.json
-  def update
-    respond_to do |format|
-      if @subreddit.update(subreddit_params)
-        format.html { redirect_to @subreddit, notice: 'Subreddit was successfully updated.' }
-        format.json { render :show, status: :ok, location: @subreddit }
-      else
-        format.html { render :edit }
         format.json { render json: @subreddit.errors, status: :unprocessable_entity }
       end
     end
@@ -56,7 +44,8 @@ class SubredditsController < ApplicationController
   def destroy
     @subreddit.destroy
     respond_to do |format|
-      format.html { redirect_to subreddits_url, notice: 'Subreddit was successfully destroyed.' }
+      format.html { redirect_to subreddits_url
+                    flash[:success] = "r/#{@subreddit.name} was successfully destroyed." }
       format.json { head :no_content }
     end
   end
