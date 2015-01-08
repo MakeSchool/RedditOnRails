@@ -10,10 +10,9 @@
   </h3>
   <h3>
     <%= "#{submission.total_upvotes} upvotes" %>
-    | <%= link_to "#{submission.comments.count} comments", submission_path(submission) %>
-    <% if current_user.admin? || current_user?(submission.user) %>
-      | <%= link_to "delete", submission, method: :delete,
-                                            data: { confirm: "You sure?" } %>
-    <% end %>
+    | <%= link_to "#{submission.comments.count} comments",
+                      subreddit_submission_path(subreddit_id: submission.subreddit.name,
+                                                id: submission.id) %>
+
   </h3>
 </section>

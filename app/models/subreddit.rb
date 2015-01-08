@@ -1,4 +1,7 @@
 class Subreddit < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name
+
   has_many :submissions
   has_many :subscriptions, dependent: :destroy
   has_many :users, through: :subscriptions

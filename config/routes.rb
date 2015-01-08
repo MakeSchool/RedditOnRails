@@ -6,14 +6,16 @@ Rails.application.routes.draw do
   get     'login'   =>  'sessions#new'
   post    'login'   =>  'sessions#create'
   delete  'logout'  =>  'sessions#destroy'
+  get     'feed'    =>  'submissions#index'
 
   resources :users
   resources :comments,        only: [:create, :edit, :destroy, :update]
   resources :votes,           only: [:create, :destroy]
-  resources :subreddits,      only: [:index, :new, :create, :destroy, :show] do
-    resources :submissions,   only: [:new, :create, :destroy]
+  resources :subreddits,      only: [:index, :new, :create, :destroy, :show],
+                              path: "r" do
+    resources :submissions,   only: [:new, :create, :destroy, :show], path: "comments"
   end
-  resources :submissions,     only: [:show, :index]
+  # resources :submissions,     path: "feed", only: [:show, :index]
   resources :subscriptions,   only: [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
