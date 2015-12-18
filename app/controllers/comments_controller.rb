@@ -7,11 +7,11 @@ class CommentsController < ApplicationController
     @comment.commentable_id = params[:commentable_id]
     @comment.commentable_type = params[:commentable_type]
     if @comment.save
-      redirect_to @comment.commentable
+      redirect_to subreddit_submission_path(subreddit_id: @comment.commentable.subreddit.name, id: @comment.commentable.id)
       flash[:success] = "Comment added!"
     else
-      redirect_to @comment.commentable
-      flash[:success] = "Comment could not be added! :("
+      redirect_to subreddit_submission_path(subreddit_id: @comment.commentable.subreddit.name, id: @comment.commentable.id)
+      flash[:danger] = "Comment could not be added! :("
     end
   end
 
@@ -22,7 +22,8 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment.commentable
+        format.html { redirect_to subreddit_submission_url(subreddit_id: @comment.commentable.subreddit.name,
+                                    id: @comment.commentable.id)
                       flash[:success] = "Comment was successfully updated." }
         format.json { render :show, status: :ok, location: @comment }
       else
@@ -36,7 +37,8 @@ class CommentsController < ApplicationController
     submission = @comment.commentable
     @comment.destroy
     flash[:success] = "Comment deleted."
-    redirect_to submission
+    redirect_to subreddit_submission_url(subreddit_id: submission.subreddit.name,
+                                id: submission.id)
   end
 
   private
@@ -47,8 +49,11 @@ class CommentsController < ApplicationController
     def correct_user
       @comment = current_user.comments.find_by(id: params[:id])
       if @comment.nil?
-        flash[:danger] = "You do not have permission to do that."
-        redirect_to root_url
+        if !current_user.admin
+          flash[:danger] = "You do not have permission to do that."
+          redirect_to root_url
+        end
+        @comment = Comment.find(params[:id])
       end
     end
 end

@@ -87,7 +87,7 @@ class User < ActiveRecord::Base
   def feed
     subscribed_ids = "SELECT subreddit_id FROM subscriptions
     WHERE  user_id = :user_id"
-    Submission.where("user_id IN (#{subscribed_ids})", user_id: id)
+    Submission.where("subreddit_id IN (#{subscribed_ids})", user_id: id)
   end
 
   def total_karma

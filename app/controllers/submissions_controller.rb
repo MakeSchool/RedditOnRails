@@ -9,12 +9,13 @@ class SubmissionsController < ApplicationController
 
   def create
     @submission = current_user.submissions.build(submission_params)
-    @submission.subreddit_id = params[:subreddit_id]
+    @submission.subreddit = Subreddit.friendly.find(params[:subreddit_id])
     @link = Link.create(params[:submission][:link].permit(:url))
     @submission.postable = @link
     if @submission.save
       @submission.update_score
-      redirect_to @submission
+      redirect_to subreddit_submission_url(subreddit_id: @submission.subreddit.name,
+                                id: @submission.id)
       flash[:success] = "Post submitted!"
     else
       @link.destroy
