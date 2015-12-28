@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   # resources :submissions,     path: "feed", only: [:show, :index]
   resources :subscriptions,   only: [:create, :destroy]
 
+
+  get '/auth/:facebook/callback', to: 'sessions#create_facebook'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -10,9 +10,9 @@ class User < ActiveRecord::Base
   before_save :downcase_username
   validates :username, presence: true, length: { minimum: 2, maximum: 32 },
                     uniqueness: { case_sensitive: false }
-  validates_length_of :password, minimum: 6, maximum: 32
+  validates_length_of :password, minimum: 6, maximum: 32, :unless => Proc.new { |user| user.provider.present? }
 
-  has_secure_password
+  has_secure_password :validations => false
 
   # Returns the hash digest of the given string.
   def User.digest(string)
@@ -96,6 +96,17 @@ class User < ActiveRecord::Base
       karma += submission.total_upvotes
     end
     karma
+  end
+
+  def self.create_with_omniauth(auth)
+    create! do |user|
+      user.provider = auth['provider']
+      user.uid = auth['uid']
+      if auth['info']
+        user.username = auth['info']['name'] || ""
+        # user.email = auth['info']['email'] || ""
+      end
+    end
   end
 
   private

@@ -9,7 +9,6 @@ gem 'jquery-rails',         '4.0.0.beta2'
 gem 'turbolinks',           '2.3.0'
 gem 'jbuilder',             '2.2.3'
 gem 'sdoc',                 '0.4.0', group: :doc
-gem 'rails',                '4.2.0'
 gem 'bcrypt',               '3.1.7'
 gem 'faker',                '1.4.2'
 gem 'will_paginate',           '3.0.7'
@@ -18,6 +17,9 @@ gem 'rsense'
 gem 'json',                 '1.8.1'
 gem 'time_diff'
 gem 'friendly_id'
+
+gem 'omniauth-facebook'
+gem 'figaro'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
@@ -33,6 +35,6 @@ group :test do
 end
 
 group :production do
-  gem 'pg',             '0.17.1'
+  gem 'pg'
   gem 'rails_12factor', '0.0.2'
 end

@@ -14,8 +14,22 @@ class SessionsController < ApplicationController
     end
   end
 
+  def create_facebook
+    user =  User.where(:provider => auth_hash['provider'],
+                    :uid => auth_hash['uid']).first || User.create_with_omniauth(auth_hash)
+    log_in user
+    redirect_to '/'
+  end
+
   def destroy
     log_out if logged_in?
     redirect_to root_url
   end
+
+  protected
+
+  def auth_hash
+    request.env['omniauth.auth']
+  end
+
 end

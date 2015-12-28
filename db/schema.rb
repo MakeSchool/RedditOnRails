@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150106070843) do
+ActiveRecord::Schema.define(version: 20151228225626) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -74,6 +74,8 @@ ActiveRecord::Schema.define(version: 20150106070843) do
     t.datetime "updated_at",                      null: false
     t.string   "remember_digest"
     t.boolean  "admin",           default: false
+    t.string   "uid"
+    t.string   "provider"
   end
 
   add_index "users", ["username"], name: "index_users_on_username", unique: true
