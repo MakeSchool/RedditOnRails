@@ -1,0 +1,2 @@
+module SubredditsHelper
+end

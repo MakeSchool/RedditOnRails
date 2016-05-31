@@ -1,0 +1,7 @@
+<li>
+  <%= link_to article.title, article.view_link(article_path(article)) %>
+  <% if user_signed_in? and current_user.moderates? article.subreddit %>
+    | <%= link_to "delete", article, method: :delete,
+    data: { confirm: "You sure?" } %>
+  <% end %>
+</li>

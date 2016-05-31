@@ -1,0 +1,8 @@
+<p>
+  <strong><%= @subreddit.title %></strong>
+</p>
+<ol>
+  <%= render @subreddit.articles %>
+</ol>
+
+<%= link_to "New Article", new_subreddit_article_path(@subreddit) %>

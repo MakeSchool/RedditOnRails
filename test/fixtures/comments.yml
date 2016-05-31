@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+under_post:
+  body: That was a great article!
+  commentable: by_andy_in_tech
+
+under_comment:
+  body: That was a great comment about that article!
+  commentable: under_post

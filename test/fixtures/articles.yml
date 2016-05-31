@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+first:
+  title: My Tech Article
+  body: Check out this superior tech source!
+  url: http://news.ycombinator.com
+  subreddit: tech
+  user: andy
+
+by_andy_in_tech:
+  title: Andy's interesting tech article
+  body: Check out this superior tech source!
+  url: http://news.ycombinator.com
+  subreddit: tech
+  user: andy
+
+by_bob_in_tech:
+  title: Bob's interesting tech article
+  body: Check out this superior tech source!
+  url: http://news.ycombinator.com
+  subreddit: tech
+  user: bob
+
+by_bob_in_cats:
+  title: Bob's interesting cat article
+  body: Check out this great cat article!
+  url: http://cats.com
+  subreddit: cats
+  user: bob

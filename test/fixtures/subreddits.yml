@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+tech:
+  title: Tech
+  slug: tech
+  user: andy
+
+cats:
+  title: Cats
+  slug: cats
+  user: bob
